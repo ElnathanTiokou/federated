@@ -199,7 +199,6 @@ py_library(
         "//tensorflow_federated/python/core/impl/utils:tensorflow_utils",
         "//tensorflow_federated/python/tensorflow_libs:graph_optimizations",
         "//tensorflow_federated/python/tensorflow_libs:graph_spec",
-        "@org_tensorflow//tensorflow:tensorflow_py",
     ],
 )
 
@@ -214,6 +213,7 @@ py_test(
         ":building_blocks",
         ":compiled_computation_transforms",
         ":tensorflow_computation_factory",
+        ":tensorflow_computation_transformations",
         ":test_utils",
         "//tensorflow_federated/python/core/api:test_case",
         "//tensorflow_federated/python/core/impl/types:computation_types",
@@ -558,7 +558,9 @@ py_library(
         ":compiled_computation_transforms",
         ":intrinsic_defs",
         ":transformation_utils",
+        "//tensorflow_federated/proto/v0:computation_py_pb2",
         "//tensorflow_federated/python/common_libs:py_typecheck",
+        "//tensorflow_federated/python/core/impl/computation:computation_impl",
         "//tensorflow_federated/python/core/impl/types:type_transformations",
     ],
 )

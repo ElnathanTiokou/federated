@@ -18,8 +18,9 @@
 # information.
 """A library of transformation functions for ASTs."""
 
-from typing import Tuple
+from typing import FrozenSet, Tuple
 
+from tensorflow_federated.proto.v0 import computation_pb2 as pb
 from tensorflow_federated.python.common_libs import py_typecheck
 from tensorflow_federated.python.core.impl.compiler import building_block_analysis
 from tensorflow_federated.python.core.impl.compiler import building_block_factory
@@ -27,6 +28,7 @@ from tensorflow_federated.python.core.impl.compiler import building_blocks
 from tensorflow_federated.python.core.impl.compiler import compiled_computation_transforms
 from tensorflow_federated.python.core.impl.compiler import intrinsic_defs
 from tensorflow_federated.python.core.impl.compiler import transformation_utils
+from tensorflow_federated.python.core.impl.computation import computation_impl
 from tensorflow_federated.python.core.impl.types import type_transformations
 
 TransformReturnType = Tuple[building_blocks.ComputationBuildingBlock, bool]
@@ -408,3 +410,13 @@ def transform_tf_call_ops_to_disable_grappler(comp):
 def transform_tf_add_ids(comp):
   """Adds unique IDs to each TensorFlow subcomputations."""
   return _apply_transforms(comp, compiled_computation_transforms.AddUniqueIDs())
+
+
+def check_disallowed_ops(comp: pb.Computation,
+                         disallowed_op_names: FrozenSet[str]) -> pb.Computation:
+  """Raises error on disallowed ops in any Tensorflow computation."""
+  if isinstance(comp, computation_impl.ConcreteComputation):
+    comp = comp.to_building_block()
+  return _apply_transforms(
+      comp,
+      compiled_computation_transforms.RaiseOnDisallowedOp(disallowed_op_names))
