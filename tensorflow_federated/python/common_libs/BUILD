@@ -172,6 +172,13 @@ py_library(
     ],
 )
 
+py_library(
+    name = "async_thread_runner",
+    srcs = ["async_thread_runner.py"],
+    srcs_version = "PY3",
+    deps = [":tracing"],
+)
+
 py_test(
     name = "structure_test",
     size = "small",

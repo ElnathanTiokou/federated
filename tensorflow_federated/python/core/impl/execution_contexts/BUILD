@@ -84,6 +84,7 @@ py_library(
     srcs_version = "PY3",
     deps = [
         ":cpp_async_execution_context",
+        "//tensorflow_federated/python/common_libs:async_thread_runner",
         "//tensorflow_federated/python/core/impl/context_stack:context_base",
         "//tensorflow_federated/python/core/impl/executors:cardinalities_utils",
     ],
@@ -95,8 +96,8 @@ py_library(
     srcs_version = "PY3",
     deps = [
         ":async_execution_context",
+        "//tensorflow_federated/python/common_libs:async_thread_runner",
         "//tensorflow_federated/python/common_libs:py_typecheck",
-        "//tensorflow_federated/python/common_libs:tracing",
         "//tensorflow_federated/python/core/api:computation_base",
         "//tensorflow_federated/python/core/impl/context_stack:context_base",
         "//tensorflow_federated/python/core/impl/executors:cardinalities_utils",
@@ -132,6 +133,7 @@ py_library(
     srcs_version = "PY3",
     deps = [
         ":async_execution_context",
+        "//tensorflow_federated/python/common_libs:async_thread_runner",
         "//tensorflow_federated/python/common_libs:py_typecheck",
         "//tensorflow_federated/python/common_libs:structure",
         "//tensorflow_federated/python/core/api:computation_base",
