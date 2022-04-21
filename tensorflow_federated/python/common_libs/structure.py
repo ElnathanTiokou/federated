@@ -260,7 +260,8 @@ def iter_elements(struct: Struct) -> Iterator[Tuple[Optional[str], Any]]:
   # pylint: enable=protected-access
 
 
-def to_odict(struct: Struct, recursive=False) -> collections.OrderedDict:
+def to_odict(struct: Struct,
+             recursive=False) -> collections.OrderedDict[Optional[str], Any]:
   """Returns `struct` as an `OrderedDict`, if possible.
 
   Args:
@@ -287,7 +288,8 @@ def to_odict(struct: Struct, recursive=False) -> collections.OrderedDict:
 
 def to_odict_or_tuple(
     struct: Struct,
-    recursive=True) -> Union[collections.OrderedDict, Tuple[Any, ...]]:
+    recursive=True
+) -> Union[collections.OrderedDict[Optional[str], Any], Tuple[Any, ...]]:
   """Returns `struct` as an `OrderedDict` or `tuple`, if possible.
 
   If all elements of `struct` have names, convert `struct` to an

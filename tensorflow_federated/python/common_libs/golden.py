@@ -19,7 +19,7 @@ import io
 import os.path
 import re
 import traceback
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 from absl import flags
 
@@ -106,7 +106,7 @@ def traceback_string(exc_type, exc_value, tb) -> str:
 
 
 def check_raises_traceback(filename: str,
-                           exception) -> contextlib.AbstractContextManager:
+                           exception) -> contextlib.AbstractContextManager[Any]:
   """Check for `exception` to be raised, generating a golden traceback."""
   # Note: does not use `@contextlib.contextmanager` because that adds
   # this function to the traceback.

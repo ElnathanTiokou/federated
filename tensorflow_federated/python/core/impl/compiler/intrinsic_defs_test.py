@@ -27,12 +27,6 @@ def _get_intrinsic_names():
 
 class IntrinsicDefsTest(parameterized.TestCase):
 
-  @parameterized.named_parameters(*[
-      (name.lower(), name) for name in _get_intrinsic_names()
-  ])
-  def test_names_match_those_in_module(self, name):
-    self.assertEqual(getattr(intrinsic_defs, name).name, name)
-
   def test_uris_are_unique(self):
     uris_found = set()
     for name in _get_intrinsic_names():

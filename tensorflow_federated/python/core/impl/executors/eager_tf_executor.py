@@ -151,7 +151,7 @@ def _get_wrapped_function_from_comp(comp, must_pin_function_to_cpu, param_type,
             g=import_graph,
             feeds=input_tensor_names,
             fetches=output_tensor_names,
-            e=e))
+            e=e)) from e
   return wrapped_fn
 
 
